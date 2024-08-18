@@ -168,10 +168,7 @@ consoleHeader("Movie Collection Tracker");
 //TODO Store Movies in an Array: Use an array to store multiple movie objects.
 //TODO Create Functions: Create functions to add a movie, rate a movie, and view your entire collection.
 //* Output Results: Use console.log to display the movie collection and ratings.
-
-let movies_arr=[
-    { title: "Movie One", genre: "action", rating: "10/10"}
-]
+let movies_arr=[ { title: "Movie One", genre: "action", rating: "10/10"}]
 
 addMovie("movie two", "comedy","8/10");
 viewMovieCollection();
@@ -190,27 +187,39 @@ function viewMovieCollection(){
     }//END FOR LOOP
 }//END FUNCTION viewMovieCollection
 
+
 function rateMovie(nameVar, ratingVar){
-    
+
+    //DISPLAYS TO CONSOLE SO I CAN REMEMBER WHAT MOVIE WE ARE TRYING TO RATE
     console.log(`Rate Movie - ${nameVar}`);
+
+    //DECLARE BOOL AND SET TO FALSE
     let movieFound=false; 
 
+    //LOOP THROUGH ARRAY 
     for(let i=0; i<movies_arr.length; i++){
-
         
+        //IF THE NAME OF MOVIE THE USER ENTERED IS THE SAME AS THE OBJECT'S MOVIE TITLE IN THAT ARRAY INDEX THEN... 
         if(nameVar.toUpperCase()== movies_arr[i].title.toUpperCase()){
+
+            //BOOL UPDATES TO TRUE
             movieFound=true;
+
+            //OBECT'S RATING IS UPDATED TO HOLD THE USER INPUT FOR RATING
             movies_arr[i].rating= ratingVar;
+
             break; 
 
         }//END IF 
         
     }//END FOR LOOP 
 
+    //AFTER EVERY SPACE OF ARRAY HAS BEEN CHECKED BY THE FOR LOOP --
+    //IF BOOL IS STILL FALSE IT MEANS THAT THE MOVIE TITLE THE USER ENTERED WAS NOT FOUND IN THE ARRAY AND WILL SHOW ERROR MESSAGE
     if(movieFound==false){
         console.log("ERROR: Movie was not found");
     }//END IF
-    
+
 }//END FUNCTION  rateMovie
 
 
@@ -254,3 +263,130 @@ function findBooksBorrowed(){
     }//END FOR LOOP
 
 }//END FUNCTION findBooksBorrowed
+
+
+
+
+//! Recipe Organizer
+//? Create a program to manage recipes, where some recipes are predefined, and the user can add or update recipes.
+
+//TODO  Each recipe should have properties like title, ingredients (an array of strings), and instructions.
+let recipes = [
+    { title: "Pancakes", ingredients: ["Flour", "Eggs", "Milk"], instructions: "Mix and cook on a griddle." },
+    { title: "Salad", ingredients: ["Lettuce", "Tomatoes", "Cucumbers"], instructions: "Chop and toss with dressing." }
+  ];
+//TODO Add a New Recipe: Allow the user to input a new recipe's title, ingredients, and instructions, then add it to the list.
+//TODO Update Recipe Instructions: Enable the user to update the instructions of an existing recipe.
+//* Display All Recipes: Write a function to display all recipes with their details.
+
+function addRecipe(titleVar, ingredientsVar_arr, instructionsVar){
+    console.log(`ADD RECIPE: ${titleVar}`)
+    recipes.push({title: titleVar, ingredients: ingredientsVar_arr, instructions: instructionsVar});
+}//END FUNCTION addRecipe
+
+function updateInstructions(instructionsVar, recipeVar){
+    for(let i=0; i<recipes.length; i++){
+        if(recipeVar.toUpperCase() == recipes[i].title.toUpperCase()){
+            recipes[i].instructions = instructionsVar;
+        }//END IF
+    }//END FOR LOOP
+}//END FUNCTION updateInstructions
+
+function displayRecipes(){
+    
+    for(let i=0; i<recipes.length; i++){
+        console.log(recipes[i]);
+    }//END FOR LOOP
+
+    console.log(recipes);
+}//END FUNCTION displayRecipes
+
+addRecipe("chicken and waffles", ["chicken", "waffles", "syrup?"], "--- put chicken on waffle ---");
+displayRecipes();
+updateInstructions("pick a different dish", "chicken and waffles");
+displayRecipes();
+
+//! Car Dealership Inventory
+//? Create a program to manage a car dealership inventory, where some cars are predefined, and the user can add or update car details.
+let cars = [
+    { make: "Toyota", model: "Camry", year: 2020, price: 24000 },
+    { make: "Honda", model: "Civic", year: 2019, price: 22000 }
+  ];
+//TODO Each car should have properties like make, model, year, and price.
+//TODO Add a New Car: Allow the user to input a new car's make, model, year, and price, then add it to the inventory.
+//TODO Update Car Price: Enable the user to update the price of an existing car.
+//* Display All Cars: Write a function to display all cars in the inventory.
+
+function addCar(makeVar, modelVar, yearVar, priceVar){
+    console.log(`ADD CAR`)
+    cars.push({make:makeVar, model:modelVar, year:yearVar, price:priceVar});
+}//END FUNCTION addRecipe
+
+function updatePrice(makeVar, modelVar, yearVar, priceVar){
+    for(let i=0; i<cars.length; i++){
+        if(makeVar.toUpperCase() == cars[i].make.toUpperCase()){
+            if(modelVar.toUpperCase()== cars[i].model.toUpperCase()){
+                if(yearVar== cars[i].year){
+                    cars[i].price=priceVar
+                }
+            }
+        } 
+            
+    }//END FOR LOOP
+}//END FUNCTION updateInstructions
+
+function displayCars(){
+    
+    for(let i=0; i<cars.length; i++){
+        console.log(cars[i]);
+    }//END FOR LOOP
+
+    console.log(cars);
+}//END FUNCTION displayRecipes
+
+addCar("makeTest", "modelTest", 3000, 100000);
+displayCars();
+updatePrice("makeTest", "modelTest", 3000, 85000)
+displayCars();
+updatePrice("Honda", "Civic", 2000, 2000);
+
+
+
+//! Pet Names with Details
+//TODO Create a program that manages a list of pet names, where each pet has a name, type (e.g., dog, cat), and age.
+
+let petArr=[];
+
+
+addPet("Han", "rabbit", 4);
+addPet("Roux", "dog", 1);
+display();
+
+
+function addPet(nameVar, typeVar, ageVar){
+    petArr.push({name: nameVar, type: typeVar, age:ageVar}); 
+}
+
+function display(){
+    console.log(petArr);
+    for(let i=0; i<petArr.length; i++){
+        console.log(petArr[i]);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+//TODOEach object should contain name, type, and age.
+//TODO  Add a New Pet: Allow the user to input a new pet's name, type, and age, then add it to the list.
+//* Display All Pet Names: Write a function to display all pets with their details.
+
+
+
